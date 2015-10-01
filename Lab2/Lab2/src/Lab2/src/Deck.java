@@ -1,54 +1,53 @@
 package Lab2.src;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collections;
 
 public class Deck extends Card{
-	
-	public String[] fullDeck = new String[]{};
-	
-	public void makeHearts(){
-		for (int i = 1; i <= 13; i++){
-			fullDeck[i] = Rank[i]+ ", Hearts";
+	public static ArrayList<String> fullDeck = new ArrayList<String>();
+
+
+	static void Deck(){
+		fullDeck = new ArrayList<String>();
+		makeDeck();
+		System.out.println(fullDeck);
+		//System.out.println(cardsLeft());
 		}
+
+	public static void shuffleDeck(){
+		Collections.shuffle(fullDeck);
 	}
-	public void makeSpades(){
-		for (int i = 1; i <= 13; i++){
-			fullDeck[i] = Rank[i]+ ", Spades";
+
+	public static void makeDeck(){
+		for (int i = 0; i < 13; i++){
+			
+			for (i = 0; i < 13; i++){
+				fullDeck.add(Rank[i]+ " " + Suit[0]);
+						}
+			for (i = 0; i < 13; i++){
+				fullDeck.add(Rank[i]+ " "+ Suit[1]);
+				}
+			for (i = 0; i < 13; i++){
+				fullDeck.add(Rank[i]+ " " +Suit[2]);
+				}
+			for (i = 0; i < 13; i++){
+				fullDeck.add(Rank[i]+ " "+ Suit[3]);
+				}
 		}
-	}
-	public void makeDiamonds(){
-		for (int i = 1; i <= 13; i++){
-			fullDeck[i] = Rank[i]+ ", Diamonds";
-		}
-	}
-	public void makeClubs(){
-		for (int i = 1; i <= 13; i++){
-			fullDeck[i] = Rank[i]+ ", Clubs";
-		}
-	}
-	
-	public void shuffleDeck(){
-		Collections.shuffle(Arrays.asList(fullDeck));
-	}
-	
-	public void makeDeck(){
-		makeClubs();
-		makeHearts();
-		makeSpades();
-		makeDiamonds();	
 		shuffleDeck();
+		//System.out.println(fullDeck);
 	}
-	
-	public String draw(){
-		
-		return null ;
-		
+
+	public static String draw(){
+		String draw1 = fullDeck.get(0);
+		fullDeck.remove(0);
+		//System.out.println(draw1);
+		return draw1;
 	}
-	
-	public int cardsLeft(){
-		return fullDeck.length;
+
+	public static int cardsLeft(){
+		return fullDeck.size();
 	}
-	
-	
+
+
 }
